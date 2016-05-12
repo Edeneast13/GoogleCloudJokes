@@ -15,6 +15,8 @@ import com.google.android.gms.ads.AdView;
 import com.example.Joker;
 import com.brianroper.mylibrary.LibraryActivity;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -56,8 +58,18 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Joker joker = new Joker();
-                String joke = joker.getJoke();
+                EndpointsTask task = new EndpointsTask();
+                String joke = null;
+                try {
+
+                    joke = task.execute(getActivity()).get();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
 
                 Intent libraryIntent = new Intent(getActivity(), LibraryActivity.class);
                 libraryIntent.putExtra("joke", joke);
