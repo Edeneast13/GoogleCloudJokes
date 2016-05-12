@@ -10,7 +10,9 @@ activity for displaying jokes, and an Android app that fetches jokes from the
 GCE module and passes them to the Android Library for display.
 
 ##Features Implemented 
--Java library for creating jokes
--Android library containing a fragment that displays the jokes
--App that fetchs jokes and pases them to the Android library
+Java library for creating jokes
+
+Android library containing a fragment that displays the jokes
+
+App that fetchs jokes and pases them to the Android library
 
