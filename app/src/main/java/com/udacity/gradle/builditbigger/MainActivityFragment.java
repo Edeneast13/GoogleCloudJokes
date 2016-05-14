@@ -35,14 +35,17 @@ public class MainActivityFragment extends Fragment {
         mTextView = (TextView)root.findViewById(R.id.instructions_text_view);
         mButton = (Button)root.findViewById(R.id.joke_button);
 
-        AdView mAdView = (AdView) root.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
+        if(BuildConfig.FLAVOR != "paid"){
+
+            AdView mAdView = (AdView) root.findViewById(R.id.adView);
+            // Create an ad request. Check logcat output for the hashed device ID to
+            // get test ads on a physical device. e.g.
+            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            mAdView.loadAd(adRequest);
+        }
 
         Joker joker = new Joker();
         mTextView.setText(joker.getJoke());
